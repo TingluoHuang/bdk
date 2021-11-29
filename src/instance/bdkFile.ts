@@ -309,16 +309,13 @@ export default class BdkFile {
       `${this.bdkPath}/ca/${peerName}@${orgName}`,
       `${this.orgPath}/peers/${peerName}`,
     )
-    // TODO GitHub Actions buffer overflow temporary solution
-    try {
-      fs.copyFileSync(
-        `${this.orgPath}/peers/${peerName}/msp/cacerts/${this.newestFileInFolder(`${this.orgPath}/peers/${peerName}/msp/cacerts`)}`,
-        `${this.orgPath}/peers/${peerName}/msp/tlscacerts/tlsca.${hostname}-cert.pem`)
-    } catch {
-      fs.copyFileSync(
-        `${this.orgPath}/peers/${peerName}/msp/cacerts/${this.newestFileInFolder(`${this.orgPath}/peers/${peerName}/msp/cacerts`)}`,
-        `${this.orgPath}/peers/${peerName}/msp/tlscacerts/tlsca.${hostname}-cert.pem`)
-    }
+
+    console.log(`${this.orgPath}/peers/${peerName}/msp/cacerts/${this.newestFileInFolder(`${this.orgPath}/peers/${peerName}/msp/cacerts`)}`)
+    console.log(`${this.orgPath}/peers/${peerName}/msp/tlscacerts/tlsca.${hostname}-cert.pem`)
+    fs.copyFileSync(
+      `${this.orgPath}/peers/${peerName}/msp/cacerts/${this.newestFileInFolder(`${this.orgPath}/peers/${peerName}/msp/cacerts`)}`,
+      `${this.orgPath}/peers/${peerName}/msp/tlscacerts/tlsca.${hostname}-cert.pem`)
+
     fs.copySync(
       `${this.orgPath}/peers/${peerName}/msp/intermediatecerts`,
       `${this.orgPath}/peers/${peerName}/msp/tlsintermediatecerts`,
