@@ -2,10 +2,7 @@ name: integration-test-ca
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+
 
 jobs:
   build:
